@@ -1,27 +1,29 @@
 describe('Treinamento de testes', () => {
-  it.('OrangeHrm', () => {
-    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-    cy.get('[name="username"]').type('Admin')
-    cy.get('[name="password"]').type('admin123')
-    cy.get('.oxd-button').click()
-    cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
-    cy.get('.oxd-topbar-header-breadcrumb > .oxd-text').contains('Dashboard')
-  })
-  it.skip('OrangeHrm - Username incorrect', () => {
-    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-    cy.get('[name="username"]').type('Admin1')
-    cy.get('[name="password"]').type('admin123')
-    cy.get('.oxd-button').click()
-    cy.get('.oxd-alert').contains('Invalid credentials')
-  })
-  it.skip('OrangeHrm - Password incorrect', () => {
-    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-    cy.get('[name="username"]').type('Admin')
-    cy.get('[name="password"]').type('admin1234')
-    cy.get('.oxd-button').click()
-    cy.get('.oxd-alert').contains('Invalid credentials')  
-  })
-  
+
+    const selectorsList = {
+      usernameField: "[name='username']",
+      passwordField: "[name='password']",
+      loginButton: "[type='submit']",
+      sectionTitleTopBar: ".oxd-topbar-header-breadcrumb-module",
+      wrongCredentialAlert: "[role='alert']",
     
+    }
+
+    it('Login - Sucess', () => {
+    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+    cy.get(selectorsList.usernameField).type('Admin')
+    cy.get(selectorsList.passwordField).type('admin123')
+    cy.get(selectorsList.loginButton).click()
+    cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
+    cy.get(selectorsList.sectionTitleTopBar).contains('Dashboard')
+   
+  })
+  it('Login - Fail', () => {
+    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')  
+    cy.get(selectorsList.usernameField).type('adminis')
+    cy.get(selectorsList.passwordField).type('11111')
+    cy.get(selectorsList.loginButton).click()
+    cy.get(selectorsList.wrongCredentialAlert)
+  })
 
 })
