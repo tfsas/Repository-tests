@@ -15,9 +15,10 @@ describe('Treinamento de testes', () => {
       genericField: ".oxd-input--active",
       dateField: "[placeholder='yyyy-dd-mm']",
       dateCloseButton: ".--close",
-      NacionatyField: "[tabindex='0']"
-
-    
+      NacionatyField: "[tabindex='0']",
+      MaritalStatus: "[tabindex='0']",
+      GenderField: ".oxd-radio-input",
+      DateOfBirthField: "[placeholder='yyyy-dd-mm']"    
     }
     
     it.only('User Info Update - Sucess', () => {
@@ -30,15 +31,22 @@ describe('Treinamento de testes', () => {
     cy.get(selectorsList.myInfoButton).click()
     cy.get(selectorsList.firstNameField).clear().type('FistName')
     cy.get(selectorsList.lastNameField).clear().type('LastName')
-    cy.get(selectorsList.genericField).eq(4).clear().type('EmployeeId')
+    cy.get(selectorsList.genericField).eq(3).clear().type('EmployeeId')
+    cy.get(selectorsList.genericField).eq(4).clear().type('OtherId')
     cy.get(selectorsList.genericField).eq(5).clear().type('OtherId')
     cy.get(selectorsList.genericField).eq(6).clear().type('1234562')
     cy.get(selectorsList.dateField).eq(0).clear().type('2025-12-05')
     cy.get(selectorsList.dateCloseButton).click()
     cy.get(selectorsList.NacionatyField).eq(0).click()
-    cy.contains('Brazilian').click()
-    //cy.get(selectorsList.NacionatyField).select('20')
+    cy.contains('Belgian').click()
+    cy.get(selectorsList.MaritalStatus).eq(1).click()
+    cy.contains('Married').click()
+    cy.get(selectorsList.GenderField).eq(1).click()
+    cy.contains('Male').click()
+    cy.get(selectorsList.DateOfBirthField).eq(1).clear().type('2025-12-05')
+    
 
+    
 
   })
   it('Login - Sucess', () => {
