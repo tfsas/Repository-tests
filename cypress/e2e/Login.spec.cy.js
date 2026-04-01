@@ -1,14 +1,15 @@
 import userData from '../fixtures/user-data.json'
+import LoginPage from '../pages/loginPage.js'
+import dashboardPage from '../pages/dashboardPage.js'
+
+const loginPage = new LoginPage()
+const dashboard = new dashboardPage()
 
 describe('Treinamento de testes', () => {
 
     const selectorsList = {
-      usernameField: "[name='username']",
-      passwordField: "[name='password']",
-      loginButton: "[type='submit']",
-      sectionTitleTopBar: ".oxd-topbar-header-breadcrumb-module",
-      dashboardGrid: ".orangehrm-dashboard-grid",
-      wrongCredentialAlert: "[role='alert']",
+     
+      
       myInfoButton: '[href="/web/index.php/pim/viewMyDetails"]',
       firstNameField: "[name='firstName']",
       lastNameField: "[name='lastName']",
@@ -22,11 +23,12 @@ describe('Treinamento de testes', () => {
       submitButton: ".orangehrm-left-space"
     }
     
-    it.only('User Info Update - Sucess', () => {
-    cy.visit('/auth/login')
-    cy.get(selectorsList.usernameField).type(userData.userSucess.username)
-    cy.get(selectorsList.passwordField).type(userData.userSucess.password)
-    cy.get(selectorsList.loginButton).click()
+    it.only('User Info Update - Success', () => {
+    loginPage.accessLoginPage()
+    loginPage.loginWithUser(userData.userSucess.username, userData.userSucess.password)
+    dashboard.accessDashboardPage(selectorsList.)
+
+    /* 
     cy.location('pathname').should('equal',  '/web/index.php/dashboard/index')
     cy.get(selectorsList.dashboardGrid)
     cy.get(selectorsList.myInfoButton).click()
@@ -48,7 +50,7 @@ describe('Treinamento de testes', () => {
     cy.get(selectorsList.dateCloseButton).click()
     cy.get(selectorsList.submitButton).eq(0).click()
     cy.get('.oxd-toast')
-    cy.get('body').should('contain', 'Successfully Updated')
+    cy.get('body').should('contain', 'Successfully Updated') */
     
    
     
