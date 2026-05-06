@@ -1,4 +1,4 @@
-class dashboardPage {
+class DashboardPage {
 
     selectorsList() {
         const   selectors = {
@@ -20,5 +20,5 @@ class dashboardPage {
         
 }
 
-export  default dashboardPage
+export  default DashboardPage
 

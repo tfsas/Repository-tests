@@ -2,6 +2,7 @@ class MyInfoPage {
 
     selectorsList() {
         const selectors = { 
+            myInfoGrid: ".oxd-topbar-header-breadcrumb-module",
             firstNameField: "[placeholder='First Name']",
             middleNameField: "[placeholder='Middle Name']",
             lastNameField: "[placeholder='Last Name']",
@@ -19,12 +20,12 @@ class MyInfoPage {
         return selectors
     }
 
-   
+       
     fillPersonalDetails(firstName, middlename, lastName) {
         cy.get(this.selectorsList().firstNameField).clear().type(firstName)
         cy.get(this.selectorsList().middleNameField).clear().type(middlename)
         cy.get(this.selectorsList().lastNameField).clear().type(lastName)
-        
+    
     }
     fillEmployeeDetails(employeeId, otherId, drivesLicenseNumber, licenseExpiryDate) {
         cy.get(this.selectorsList().genericField).eq(3).clear().type(employeeId)
